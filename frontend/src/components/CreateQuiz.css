@@ -1,0 +1,70 @@
+
+ .large-input {
+    width: 80%;
+    margin: 30px 10%;
+ }
+
+ .options-input {
+    margin-left: 10%;
+    width: 100vw;
+ }
+ .option-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .option-container input[type="text"] {
+    flex: 1;
+    margin-right: 8px;
+  }
+  
+  .option-container input[type="checkbox"] {
+    margin-right: 8px;
+  }
+  
+  .option-container button {
+    margin-left: 8px;
+    
+    background-color: rgba(241, 57, 20, 0.833);
+  }
+      
+  .button-container {
+    display: flex;
+    gap: 8px; /* Adjust as needed */
+  }
+  
+  .button-container button {
+    flex-grow: 1;
+  }
+.delete-button {
+    width: 20vw;
+}
+  .create-quiz-button {
+    width:80%;
+    margin: 40px 10%;
+  }
+  
+
+ @media (max-width: 600px) { 
+     .add-recruiter-container {
+         padding-left: 20vw;
+         padding-top: 20vh;
+      }
+      
+      .add-recruiter-input {
+          width: 60vw;
+      }
+ }
+ 
+ 
+ @media (max-width: 480px) { 
+     .add-recruiter-container {
+         padding-left: 10vw;
+         padding-top: 20vh;
+      }
+      
+      .add-recruiter-input {
+          width: 80vw;
+      }
+ }

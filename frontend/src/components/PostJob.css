@@ -1,0 +1,66 @@
+.post-job-container {
+    padding: 30px 10%;
+ }
+ 
+ .add-recruiter-input {
+     width: 80%;
+ }
+ 
+ .back-button {
+     font-size: 40px;
+     font-weight: 300;
+ }
+ 
+ .post-job-container input {
+    width: 80%;
+    margin: 30px 10%;
+ }
+
+ /* styles.css */
+.single-line {
+    display: flex;
+    align-items: center;
+    width: 30%;
+  }
+  
+  .single-line input[type="checkbox"] {
+    margin-right: 10px; /* Adjust spacing as needed */
+  }
+  
+  .post-job-button {
+    width: 60vw;
+    margin-left: 10vw;
+  }
+
+ .back-button-container:hover {
+     background-color: #bbb;
+     border-radius: 30px;
+     width: 45px;
+     text-align: center;
+     align-content: center;
+ }
+
+ 
+ 
+ @media (max-width: 600px) { 
+     .add-recruiter-container {
+         padding-left: 20vw;
+         padding-top: 20vh;
+      }
+      
+      .add-recruiter-input {
+          width: 60vw;
+      }
+ }
+ 
+ 
+ @media (max-width: 480px) { 
+     .add-recruiter-container {
+         padding-left: 10vw;
+         padding-top: 20vh;
+      }
+      
+      .add-recruiter-input {
+          width: 80vw;
+      }
+ }
