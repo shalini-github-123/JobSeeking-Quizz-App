@@ -2,6 +2,7 @@ require('dotenv').config(); // Load environment variables from .env file
 
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Add this line to import cors
 const userRoutes = require('./routes/user');
 const jobRoutes = require('./routes/jobs');
 const quizRoutes = require('./routes/quizzes'); // Add this line
@@ -11,6 +12,23 @@ const port = process.env.PORT || 3000;
 
 // Create an Express application
 const app = express();
+
+// Configure CORS
+const allowedOrigins = ['http://localhost:3000', 'https://quiz-interview-app.netlify.app',];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // allow requests with no origin (like mobile apps, curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
 
 // Middleware to parse JSON bodies
 app.use(express.json());
