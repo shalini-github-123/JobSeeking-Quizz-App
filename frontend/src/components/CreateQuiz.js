@@ -22,7 +22,7 @@ const CreateQuiz = () => {
 
   const fetchQuiz = async () => {
     try {
-      const response = await fetch(`/api/quizzes/${id}`, {
+      const response = await fetch(`https://jobseeking-quizz-app.onrender.com/api/quizzes/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`
         }
@@ -117,7 +117,7 @@ const CreateQuiz = () => {
     console.log('Submitting quiz data:', quizData); // Log quizData to inspect its structure
     try {
       const method = id ? "PUT" : "POST";
-      const url = id ? `/api/quizzes/${id}` : "/api/quizzes";
+      const url = id ? `https://jobseeking-quizz-app.onrender.com/api/quizzes/${id}` : "https://jobseeking-quizz-app.onrender.com/api/quizzes";
       const response = await fetch(url, {
         method,
         headers: {

@@ -12,7 +12,7 @@ const JobListPage = () => {
 
   const fetchJobs = async () => {
     try {
-      const response = await axios.get('/api/jobs'); // Endpoint to fetch jobs
+      const response = await axios.get('https://jobseeking-quizz-app.onrender.com/api/jobs'); // Endpoint to fetch jobs
       setJobs(response.data);
     } catch (error) {
       console.error('Error fetching jobs:', error.response ? error.response.data : error.message);

@@ -17,7 +17,7 @@ const QuizCreateForm = ({ jobId }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('/api/quizzes', { ...quizData, job: jobId });
+      await axios.post('https://jobseeking-quizz-app.onrender.com/api/quizzes', { ...quizData, job: jobId });
       console.log('Quiz created');
     } catch (error) {
       console.error('Error creating quiz:', error);
