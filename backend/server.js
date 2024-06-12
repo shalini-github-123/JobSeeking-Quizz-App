@@ -14,8 +14,11 @@ const port = process.env.PORT || 3000;
 const app = express();
 
 // Configure CORS
-const allowedOrigins = ['http://localhost:3000', 'https://quiz-interview-app.netlify.app',];
-
+const allowedOrigins = [
+  'http://localhost:3000', 
+  'https://cerulean-pudding-c0e107.netlify.app', 
+  'https://jobseeking-quizz-app-1.onrender.com'
+];
 app.use(cors({
   origin: function (origin, callback) {
     // allow requests with no origin (like mobile apps, curl requests)
