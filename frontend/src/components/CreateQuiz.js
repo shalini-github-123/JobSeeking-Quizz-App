@@ -5,6 +5,7 @@ import "./CreateQuiz.css"
 
 const CreateQuiz = () => {
   const [quizData, setQuizData] = useState({
+    recruiter: null,
     name: '',
     deadline: '',
     duration: '',
@@ -22,7 +23,7 @@ const CreateQuiz = () => {
 
   const fetchQuiz = async () => {
     try {
-      const response = await fetch(`https://jobseeking-quizz-app.onrender.com/api/quizzes/${id}`, {
+      const response = await fetch(`http://localhost:4000/api/quizzes/${id}`, {
         headers: {
           Authorization: `Bearer ${user.token}`
         }
@@ -40,7 +41,8 @@ const CreateQuiz = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setQuizData({ ...quizData, [name]: value });
+    setQuizData({ ...quizData, [name]: value,recruiter: user._id });
+    // setQuizData({...quizData, recruiter: user._id});
   };
 
   const handleQuestionChange = (index, event) => {
@@ -113,11 +115,12 @@ const CreateQuiz = () => {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
     console.log('Submitting quiz data:', quizData); // Log quizData to inspect its structure
     try {
       const method = id ? "PUT" : "POST";
-      const url = id ? `https://jobseeking-quizz-app.onrender.com/api/quizzes/${id}` : "https://jobseeking-quizz-app.onrender.com/api/quizzes";
+      const url = id ? `http://localhost:4000/api/quizzes/${id}` : "http://localhost:4000/api/quizzes";
       const response = await fetch(url, {
         method,
         headers: {

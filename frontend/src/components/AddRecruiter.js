@@ -14,7 +14,7 @@ const AddRecruiter = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch("https://jobseeking-quizz-app.onrender.com/api/user/admin/create-recruiter", {
+      const response = await fetch("http://localhost:4000/api/user/admin/create-recruiter", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

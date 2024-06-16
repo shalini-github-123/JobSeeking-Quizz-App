@@ -1,3 +1,4 @@
+// models/User.js
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validator = require('validator');
@@ -21,10 +22,10 @@ const userSchema = new Schema({
     enum: ['Admin', 'Recruiter', 'JobSeeker'],
     default: 'JobSeeker'
   },
-  invitationCode: String // used for job seeker invitations
+  invitationCode: String,
+  appliedJobs: [{ type: Schema.Types.ObjectId, ref: 'Job' }] // Add applied jobs field
 });
 
-// static signup method for Job Seeker
 userSchema.statics.signup = async function(email, password) {
   if (!email || !password) {
     throw Error('All fields must be filled');
@@ -33,7 +34,7 @@ userSchema.statics.signup = async function(email, password) {
   if (!validator.isEmail(email)) {
     throw Error('Email is not valid');
   }
-  
+
   if (!validator.isStrongPassword(password)) {
     throw Error('Password is not strong enough');
   }
@@ -50,7 +51,6 @@ userSchema.statics.signup = async function(email, password) {
   return user;
 };
 
-// static login method
 userSchema.statics.login = async function(email, password) {
   if (!email || !password) {
     throw Error('Email and password are required');
@@ -69,7 +69,6 @@ userSchema.statics.login = async function(email, password) {
   return user;
 };
 
-// static method to login a job seeker with invitation
 userSchema.statics.loginWithInvitation = async function(email, invitationCode) {
   if (!email || !invitationCode) {
     throw Error('Email and invitation code are required');

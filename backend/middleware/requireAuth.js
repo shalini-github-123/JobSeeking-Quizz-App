@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userModel');
+const User = require('../models/User');
 
 const requireAuth = (roles = []) => {
   return async (req, res, next) => {
@@ -19,10 +19,12 @@ const requireAuth = (roles = []) => {
       console.log("Decoded Token ID and Role:", _id, role);
 
       req.user = await User.findById(_id).select('_id email role');
+      console.log(req.user);
 
       if (!req.user) {
         return res.status(404).json({ error: 'User not found' });
       }
+      console.log(roles.includes(req.user.role),roles,req.user.role);
 
       if (roles.length && !roles.includes(req.user.role)) {
         return res.status(403).json({ error: 'Access forbidden: Insufficient permissions' });

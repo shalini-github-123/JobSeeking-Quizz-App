@@ -1,0 +1,36 @@
+.job-list-navbar {
+    background-color: #f1f1f1;
+    padding: 10px 0;
+  }
+  
+  .job-list-navbar ul {
+    list-style: none;
+    display: flex; /* Distribute items evenly */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .job-list-navbar li {
+    flex: 1;
+    text-align: center;
+    margin: 1vw 1vw;
+    width: 30vw;
+    background-color:#aaa ;
+    border-radius: 30px;
+  }
+  
+  .job-list-navbar .nav-link {
+    display: block;
+    padding: 15px;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+
+  .job-list-navbar li:hover {
+    
+    background-color:#888 ;
+  }
+  
+  
+  

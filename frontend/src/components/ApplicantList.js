@@ -7,7 +7,7 @@ const ApplicantList = ({ jobId }) => {
   useEffect(() => {
     const fetchApplicants = async () => {
       try {
-        const response = await axios.get(`https://jobseeking-quizz-app.onrender.com/api/applications?jobId=${jobId}`);
+        const response = await axios.get(`http://localhost:4000/api/applications?jobId=${jobId}`);
         setApplicants(response.data);
       } catch (error) {
         console.error('Error fetching applicants:', error);

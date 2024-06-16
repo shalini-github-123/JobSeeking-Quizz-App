@@ -2,6 +2,7 @@
 const Quiz = require('../models/Quiz');
 
 const createQuiz = async (req, res) => {
+  console.log(req.body);
   try {
     const quiz = new Quiz(req.body);
     await quiz.save();
@@ -13,6 +14,7 @@ const createQuiz = async (req, res) => {
 const getQuizzes = async (req, res) => {
   try {
     const quizzes = await Quiz.find({ recruiter: req.user._id });
+    console.log(quizzes);
     res.status(200).json(quizzes);
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -44,9 +46,25 @@ const updateQuizById = async (req, res) => {
   }
 };
 
+const viewQuizResults = async (req, res) => {
+  const { jobId } = req.params;
+
+  try {
+    const job = await Job.findById(jobId).populate('quiz');
+    if (!job || !job.quiz) {
+      return res.status(404).json({ error: 'Quiz or Job not found' });
+    }
+
+    res.status(200).json(job.quiz.results);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   createQuiz,
   getQuizzes,
   getQuizById,
   updateQuizById,
+  viewQuizResults
 };

@@ -24,7 +24,7 @@ const PostJob = () => {
 
   const fetchQuizzes = async () => {
     try {
-      const response = await axios.get('https://jobseeking-quizz-app.onrender.com/api/quizzes', {
+      const response = await axios.get('http://localhost:4000/api/quizzes', {
         headers: { Authorization: `Bearer ${user.token}` }
       });
       setQuizzes(response.data);
@@ -54,7 +54,7 @@ const PostJob = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("https://jobseeking-quizz-app.onrender.com/api/jobs", {
+      const response = await fetch("http://localhost:4000/api/jobs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

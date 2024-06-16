@@ -1,45 +1,164 @@
 /* styles.css */
 
 .job-card {
-    background-color: #f9f9f9;
-    align-content: center;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    margin: 20px 10vw;
-    width: 80vw;
+  background-color: #f9f9f9;
+  align-content: center;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  width: 80vw;
+  max-width: 600px; /* Prevent it from getting too wide */
+  box-sizing: border-box; /* Ensure padding is included in width */
+  font-size: 1rem; /* Base font size for desktop */
+}
+
+.job-card h2 {
+  margin-top: 0;
+  color: #333;
+  font-size: 1.5rem; /* Font size for desktop */
+}
+
+.job-card p {
+  margin: 10px 0;
+  color: #666;
+  font-size: 1rem; /* Font size for desktop */
+}
+
+.job-card .details {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Wrap details on smaller screens */
+}
+
+.job-card .details p {
+  margin: 0;
+}
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%; /* Full width buttons by default */
+  max-width: 150px;
+}
+
+.job-card .apply-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.job-card .apply-btn:hover {
+  background-color: #0056b3;
+}
+
+.application-details {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #e9e9e9;
+  border-radius: 4px;
+}
+
+/* Tablet Styles */
+@media (max-width: 768px) {
+  .job-card {
+    margin: 20px auto;
+    width: 90vw; /* Adjust width for tablets */
+    padding: 15px;
+    font-size: 0.9rem; /* Slightly smaller font size for tablets */
   }
-  
+
   .job-card h2 {
-    margin-top: 0;
-    color: #333;
+    font-size: 1.3rem; /* Adjusted font size for tablets */
   }
-  
+
   .job-card p {
-    margin: 10px 0;
-    color: #666;
+    font-size: 0.9rem; /* Adjusted font size for tablets */
   }
-  
+
   .job-card .details {
-    display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Stack details vertically on smaller screens */
   }
-  
+
   .job-card .details p {
-    margin: 0;
+    margin-bottom: 10px; /* Add some space between details */
   }
-  
+
+  .btn {
+    width: 100%; /* Full width buttons on mobile */
+    max-width: none; /* Remove max-width constraint */
+  }
+
   .job-card .apply-btn {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    width: 100%; /* Full width apply button */
+    max-width: none; /* Remove max-width constraint */
+    margin-top: 10px; /* Add some space above the button */
   }
-  
+
   .job-card .apply-btn:hover {
     background-color: #0056b3;
   }
-  
+
+  .application-details {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #e9e9e9;
+    border-radius: 4px;
+  }
+}
+
+/* Mobile Styles */
+@media (max-width: 420px) {
+  .job-card {
+    margin: 10px auto;
+    width: 95vw; /* Adjust width for mobile */
+    padding: 10px;
+    font-size: 0.8rem; /* Smaller font size for mobile */
+  }
+
+  .job-card h2 {
+    font-size: 1.1rem; /* Adjusted font size for mobile */
+  }
+
+  .job-card p {
+    font-size: 0.8rem; /* Adjusted font size for mobile */
+  }
+
+  .job-card .details p {
+    margin-bottom: 8px; /* Adjust space between details */
+  }
+
+  .btn {
+    width: 100%; /* Full width buttons on mobile */
+    max-width: none; /* Remove max-width constraint */
+  }
+
+  .job-card .apply-btn {
+    width: 100%; /* Full width apply button */
+    max-width: none; /* Remove max-width constraint */
+    margin-top: 10px; /* Add some space above the button */
+  }
+
+  .job-card .apply-btn:hover {
+    background-color: #0056b3;
+  }
+
+  .application-details {
+    margin-top: 8px;
+    padding: 8px;
+    background-color: #e9e9e9;
+    border-radius: 4px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}

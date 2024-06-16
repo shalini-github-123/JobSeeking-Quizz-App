@@ -12,7 +12,8 @@ const JobSchema = new Schema({
   requirements: { type: String, required: true },
   joiningDate: { type: Date, required: true },
   minimumDuration: { type: Number, required: true },
-  quiz: { type: Schema.Types.ObjectId, ref: 'Quiz', required: false }
+  quiz: { type: Schema.Types.ObjectId, ref: 'Quiz', required: false },
+  applicants: [{ type: Schema.Types.ObjectId, ref: 'User' }] // Add applicants field
 });
 
 module.exports = mongoose.model('Job', JobSchema);

@@ -9,6 +9,7 @@ const QuestionSchema = new Schema({
 });
 
 const QuizSchema = new Schema({
+  recruiter: { type: Schema.Types.ObjectId, ref: 'User', required: true },
   name: { type: String, required: true },
   deadline: { type: Date, required: true },
   duration: { type: Number, required: true },

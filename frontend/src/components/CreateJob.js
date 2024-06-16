@@ -13,7 +13,7 @@ const CreateJob = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('https://jobseeking-quizz-app.onrender.com/api/jobs', {
+      const response = await fetch('http://localhost:4000/api/jobs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

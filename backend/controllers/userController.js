@@ -1,4 +1,4 @@
-const User = require('../models/userModel');
+const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { request } = require('express');
@@ -7,7 +7,6 @@ const createToken = (_id, role) => {
   return jwt.sign({ _id, role }, process.env.SECRET, { expiresIn: '3d' });
 };
 
-// login a user
 // login a user
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
@@ -32,13 +31,12 @@ const loginUser = async (req, res) => {
     // Create token based on user role
     const token = createToken(user._id, role);
 
-    // Return response with email, token, and role
-    res.status(200).json({ email, token, role });
+    // Return response with email, token, role, and _id
+    res.status(200).json({ _id: user._id, email, token, role });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 
 // signup a user (Job Seekers only)
 const signupUser = async (req, res) => {
@@ -48,60 +46,43 @@ const signupUser = async (req, res) => {
     const user = await User.signup(email, password);
     const token = createToken(user._id, user.role);
 
-    res.status(200).json({ email, token, role: user.role });
+    // Return response with email, token, role, and _id
+    res.status(200).json({ _id: user._id, email, token, role: user.role });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
+// Create a recruiter (Admin only)
 const createRecruiter = async (req, res) => {
   const { email, password } = req.body;
-  console.log("check 6", email, password);
 
   try {
-    // const isAdmin = await isAdminUser(req.user.email, req.user.password);
-    // console.log("check 7", isAdmin,req.user.email, req.user.password);
-
-    // if (!isAdmin) {
-    //   return res.status(403).json({ error: 'Only Admins can create Recruiters' });
-    // }
-
     // Create the recruiter user
     const recruiterUser = await User.signup(email, password);
-    console.log("check 8");
     recruiterUser.role = 'Recruiter';
     await recruiterUser.save();
-    console.log("check 9");
 
-    res.status(201).json({ email: recruiterUser.email, role: recruiterUser.role });
-    console.log("check 10", res);
+    // Return response with email, role, and _id of the recruiter
+    res.status(201).json({ _id: recruiterUser._id, email: recruiterUser.email, role: recruiterUser.role });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
 
-
-
-
-// Helper function to check if the user is an admin
 // Helper function to check if the user is an admin
 const isAdminUser = (email, password) => {
   // Retrieve admin credentials from environment variables
   const adminEmail = process.env.ADMIN_EMAIL;
   const adminPassword = process.env.ADMIN_PASSWORD;
- 
-  console.log(adminEmail,email,adminPassword,password,"admin details inside isadminuser");
+
   // Compare provided email and password with admin credentials
   if (email === adminEmail && password === adminPassword) {
-    console.log("true");
     return true; // User is an admin
   } else {
-    console.log("false");
     return false; // User is not an admin
   }
 };
-
-
 
 // job seeker invitation login
 const loginJobSeeker = async (req, res) => {
@@ -111,7 +92,8 @@ const loginJobSeeker = async (req, res) => {
     const user = await User.loginWithInvitation(email, invitationCode);
     const token = createToken(user._id, user.role);
 
-    res.status(200).json({ email, token, role: user.role });
+    // Return response with email, token, role, and _id
+    res.status(200).json({ _id: user._id, email, token, role: user.role });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -126,6 +108,5 @@ const logoutUser = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
-
 
 module.exports = { signupUser, loginUser, loginJobSeeker, createRecruiter, logoutUser };

@@ -66,6 +66,9 @@ const VerticalNavbar = () => {
                   {user.role === "Recruiter" && (
                     <button><Link to="/create-quiz" className="add-recruiter-button">Create New Quiz</Link></button>
                   )}
+                  {user.role === "Recruiter" && (
+                    <button><Link to="/jobs/posted" className="add-recruiter-button">Jobs Posted</Link></button>
+                  )}
                 </div>
               </div>
             </div>
